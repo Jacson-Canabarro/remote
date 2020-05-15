@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Tarefas</h1>
+
+<div>
+    <label>
+        <input type="text" class="js_nome">
+    </label>
+    <button class="js_adc">Adicionar</button>
+</div>
+
+<h2>pra fazer</h2>
+
+<ul class="lista">
+
+</ul>
+
+
+</body>
+
+<script>
+
+    function addItemLista(nome) {
+        if (nome) {
+            let $lista = document.querySelector('.lista')
+            let $li = document.createElement('li')
+            $li.innerText = nome
+            $lista.append($li)
+            $li.addEventListener('click', () => {
+                if ($li.getAttribute('style') === null) {
+                    $li.style.textDecoration = "line-through"
+                    $lista.append($li)
+                } else {
+                    $li.removeAttribute('style')
+                }
+            })
+            $li.addEventListener('dblclick', () => {
+                $li.remove()
+            })
+        }
+    }
+
+    let $adicionar = document.querySelector('.js_adc')
+    $adicionar.addEventListener('click', () => {
+        let $nome = document.querySelector('.js_nome')
+        let nome = $nome.value.trim()
+        addItemLista(nome)
+    })
+
+    document.addEventListener("keyup", event => {
+        if (event.key === 'Enter') {
+            let $nome = document.querySelector('.js_nome')
+            let nome = $nome.value.trim()
+            addItemLista(nome)
+        }
+    })
+
+
+</script>
+</html>
